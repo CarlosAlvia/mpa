@@ -1,0 +1,16 @@
+.fa-brands{
+    font-size: 600%;
+    color: #1db954;
+}
+
+.card-body{
+    background-color: #191414;
+}
+
+.card-body h2, h5{
+    color: #fff;
+}
+
+.card-body p{
+    color: #fff;
+}

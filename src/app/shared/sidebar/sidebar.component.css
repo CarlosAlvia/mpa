@@ -1,0 +1,33 @@
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    z-index: 996;
+    transition: all 0.3s;
+    padding: 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aab7cf transparent;
+    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+    background-color: #191414;
+}
+
+.sidebar-nav .nav-link.collapsed {
+    color: #fff;
+    background: #7c7c7c;
+}
+
+.sidebar-nav .nav-link.collapsed i {
+    color: #5cec8c;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: #32ec6e;
+    background: #929292;
+}
+
+.sidebar-nav .nav-link:hover i {
+    color: #32ec6e;
+}

@@ -1,0 +1,39 @@
+.bi{
+    color: #1db954;
+}
+
+.header .search-form button i {
+    color: #1db954;
+}
+
+.fa-brands{
+    font-size: 30px;
+    color: #1db954;
+    margin-right: 2%;
+}
+
+.header .search-form input {
+    border: 0;
+    font-size: 14px;
+    color: black;
+    border: 1px solid rgba(1, 41, 112, 0.2);
+    padding: 7px 38px 7px 8px;
+    border-radius: 3px;
+    transition: 0.3s;
+    width: 100%;
+  }
+
+.header .search-form input:focus,
+.header .search-form input:hover {
+  outline: none;
+  box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
+  border: 1px solid rgba(1, 41, 112, 0.3);
+}
+
+.title{
+    color: #fff;
+}
+
+header{
+    background-color: #191414;
+}
