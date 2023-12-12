@@ -8,6 +8,18 @@ export class ProcesadorDatosService {
 
   constructor() { }
 
+  static compararPopularidad = (a:Cancion, b:Cancion) => {
+    const popA = parseInt(a.popularity);
+    const popB = parseInt(b.popularity);
+    if(popA < popB){
+      return 1;
+    } else if(popA > popB){
+      return -1;
+    }else{
+      return 0;
+    }
+  };
+
   private getArtistas(arr:Cancion[]){
     let artistas: string[] = [];
     arr.forEach((elemento: Cancion) => {
@@ -75,6 +87,10 @@ export class ProcesadorDatosService {
       topArtistas.push(objeto);
     }
     return topArtistas;
+  }
+
+  getTopPopularidad(arr:Cancion[]){
+    return arr.slice().sort(ProcesadorDatosService.compararPopularidad).slice(0,10);
   }
 
 }

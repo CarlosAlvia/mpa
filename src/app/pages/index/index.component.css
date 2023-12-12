@@ -103,6 +103,10 @@
   color: #fff;
 }
 
+.dashboard .recent-sales .table tbody th a{
+  color: #fff;
+}
+
 .dashboard .recent-sales .table thead th {
   border: 0;
 }

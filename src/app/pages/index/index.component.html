@@ -105,7 +105,7 @@
                         <tr>
                           <th scope="row"><a href="#">{{item.top}}</a></th>
                           <td>{{item.artista}}</td>
-                          <td><a href="#" class="text-primary">{{item.canciones}}</a></td>
+                          <td>{{item.canciones}} Canciones</td>
                         </tr>
                       }
                     </tbody>
@@ -125,7 +125,7 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Popularidad</th>
                         <th scope="col">Canción</th>
                         <th scope="col">Artista</th>
                         <th scope="col">Fecha de Lanzamiento</th>
@@ -133,13 +133,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
-                      </tr>
+                      @for (item of dataPopularidad; track item.spotify_id) {
+                        <tr>
+                          <th scope="row">{{item.popularity}}</th>
+                          <td>{{item.name}}</td>
+                          <td>{{item.artists}}</td>
+                          <td class="fw-bold">{{item.album_release_date}}</td>
+                          <td>{{item.snapshot_date}}</td>
+                        </tr>
+                      }
                     </tbody>
                   </table>
   
