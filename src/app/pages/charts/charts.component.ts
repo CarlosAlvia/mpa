@@ -20,20 +20,22 @@ export class ChartsComponent {
 
   @ViewChild('CaracteristicasRadar', { static: false }) CaracteristicasRadar!: ElementRef;
   @ViewChild('Explicit', { static: false }) Explicit!: ElementRef;
+  @ViewChild('DispersionEnergiaVSValence', { static: false }) ValenceVSEnergy!: ElementRef;
 
   constructor(private dataProvider: SpotifySongsStatsService, private chartMaker: ProcesadorChartService){}
   ngOnInit(){
     this.dataProvider.getResponse().subscribe((response) => {
       let dataArray = (response as Cancion[]);
-      console.log(dataArray.length);
-      this.makeRadarChart(dataArray);
-      this.makeBarChart(dataArray);
+      this.chartMaker.setDataArray(dataArray);
+      this.makeRadarChart();
+      this.makeBarChart();
+      this.makeScatterChart();
     });
   }
 
-  makeRadarChart(arr:Cancion[]){
+  makeRadarChart(){
     const ref = this.CaracteristicasRadar.nativeElement;
-    const data = this.chartMaker.getDataRadarChart(arr);
+    const data = this.chartMaker.getDataRadarChart();
     const options = {
       elements: {
         line: {
@@ -48,11 +50,20 @@ export class ChartsComponent {
     });
   }
 
-  makeBarChart(arr:Cancion[]){
+  makeBarChart(){
     const ref = this.Explicit.nativeElement;
-    const data = this.chartMaker.getDataBarChart(arr);
+    const data = this.chartMaker.getDataBarChart();
     new Chart(ref, {
       type: "bar",
+      data: data
+    });
+  }
+
+  makeScatterChart(){
+    const ref = this.ValenceVSEnergy.nativeElement;
+    const data = this.chartMaker.getScatterData();
+    new Chart(ref, {
+      type: "scatter",
       data: data
     });
   }

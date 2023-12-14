@@ -6,28 +6,36 @@ import { Cancion } from '../interfaces/cancion';
 })
 export class ProcesadorChartService {
 
-  constructor() { }
+  dataArray:Cancion[];
 
-  private getPromedioAtributo(arr:Cancion[], atributo:keyof Cancion){
+  constructor() { 
+    this.dataArray = [];
+  }
+
+  setDataArray(arr:Cancion[]){
+    this.dataArray = arr;
+  }
+
+  private getPromedioAtributo(atributo:keyof Cancion){
     let sumatoria:number = 0;
-    arr.forEach((cancion:Cancion) =>{
+    this.dataArray.forEach((cancion:Cancion) =>{
       const valor: number = parseFloat(cancion[atributo]);
       sumatoria += valor;
     });
-    return (sumatoria/arr.length);
+    return (sumatoria/this.dataArray.length);
   }
 
-  private processDataRadar(arr: Cancion[]){
+  private processDataRadar(){
     let arrCarac: number[] = [
-      this.getPromedioAtributo(arr, "acousticness"),
-      this.getPromedioAtributo(arr, "energy"),
-      this.getPromedioAtributo(arr, "danceability"),
-      this.getPromedioAtributo(arr, "instrumentalness")
+      this.getPromedioAtributo("acousticness"),
+      this.getPromedioAtributo("energy"),
+      this.getPromedioAtributo("danceability"),
+      this.getPromedioAtributo("instrumentalness")
     ];
     return arrCarac;
   }
 
-  public getDataRadarChart(arr: Cancion[]){
+  public getDataRadarChart(){
     const data = {
       labels: [
         "Acústico",
@@ -37,7 +45,7 @@ export class ProcesadorChartService {
       ],
       datasets:[{
         label:"Características de las Canciones",
-        data: this.processDataRadar(arr),
+        data: this.processDataRadar(),
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
       }]
@@ -46,7 +54,7 @@ export class ProcesadorChartService {
     return data;
   }
 
-  public getDataBarChart(arr: Cancion[]){
+  public getDataBarChart(){
     const data = {
       labels:[
         "Explícitas",
@@ -55,8 +63,8 @@ export class ProcesadorChartService {
       datasets:[{
         label: "Explícitas vs No Explícitas",
         data:[
-          arr.filter(cancion => cancion.is_explicit === "True").length,
-          arr.filter(cancion => cancion.is_explicit !== "True").length,
+          this.dataArray.filter(cancion => cancion.is_explicit === "True").length,
+          this.dataArray.filter(cancion => cancion.is_explicit !== "True").length,
         ],
         fill:true,
         backgroundColor:[
@@ -71,6 +79,30 @@ export class ProcesadorChartService {
       }]
     }
     return data
+  }
+
+  private getPairDataScatter(){
+    let data: {x: number, y: number}[] = [];
+    this.dataArray.forEach(cancion => {
+      let xy = {
+        x: parseFloat(cancion.valence),
+        y: parseFloat(cancion.energy)
+      }
+      data.push(xy);
+    });
+    return data;
+  }
+
+  public getScatterData(){
+    const data = {
+      datasets: [{
+        label: "Valence vs Energy",
+        data: this.getPairDataScatter(),
+        backgroundColor: 'rgb(255, 99, 132)'
+      }]
+    };
+
+    return data;
   }
 
 }
