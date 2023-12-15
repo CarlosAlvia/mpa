@@ -6,7 +6,15 @@ import { Cancion } from '../interfaces/cancion';
 })
 export class ProcesadorDatosService {
 
-  constructor() { }
+  dataArray:Cancion[];
+
+  constructor() { 
+    this.dataArray = [];
+  }
+
+  public setDataArray(arr:Cancion[]){
+    this.dataArray = arr;
+  }
 
   static compararPopularidad = (a:Cancion, b:Cancion) => {
     const popA = parseInt(a.popularity);
@@ -20,9 +28,9 @@ export class ProcesadorDatosService {
     }
   };
 
-  private getArtistas(arr:Cancion[]){
+  private getArtistas(){
     let artistas: string[] = [];
-    arr.forEach((elemento: Cancion) => {
+    this.dataArray.forEach((elemento: Cancion) => {
       let elementoArtista: string[] = elemento["artists"].split(","); 
       for(let i=0; i<elementoArtista.length; i++){
         if(!artistas.includes(elementoArtista[i].trim())){
@@ -33,9 +41,9 @@ export class ProcesadorDatosService {
     return artistas;
   }
 
-  private getCantidadCanciones(arr: Cancion[], artistas: string[]){
+  private getCantidadCanciones(artistas: string[]){
     let canciones: number[] = Array.from({length: artistas.length}, () => 0);
-    arr.forEach((cancion:Cancion) =>{
+    this.dataArray.forEach((cancion:Cancion) =>{
       for(let i=0; i<artistas.length; i++){
         if(cancion["artists"].includes(artistas[i])){
           canciones[i] += 1;
@@ -45,31 +53,31 @@ export class ProcesadorDatosService {
     return canciones;
   }
 
-  getArtistasRecopilados(arr: Cancion[]){
-    return this.getArtistas(arr).length;
+  getArtistasRecopilados(){
+    return this.getArtistas().length;
   }
 
-  getTempoPromedio(arr:Cancion[]){
+  getTempoPromedio(){
     let sumatoria: number = 0;
-    arr.forEach((elemento: Cancion) => {
+    this.dataArray.forEach((elemento: Cancion) => {
       sumatoria += parseInt(elemento["tempo"]);
     });
-    return (sumatoria/arr.length).toFixed(2);
+    return (sumatoria/this.dataArray.length).toFixed(2);
   }
 
-  getTiempoPromedio(arr:Cancion[]){
+  getTiempoPromedio(){
     let sumatoria: number = 0;
-    arr.forEach((elemento: Cancion) =>{
+    this.dataArray.forEach((elemento: Cancion) =>{
       sumatoria += parseInt(elemento["duration_ms"]);
     });
     sumatoria = sumatoria/60000;
-    return (sumatoria/arr.length).toFixed(2);
+    return (sumatoria/this.dataArray.length).toFixed(2);
   }
 
-  getArtistasConMasCanciones(arr:Cancion[]){
+  getArtistasConMasCanciones(){
     let topArtistas: {top:number ,artista: string, canciones: number}[] = []; 
-    let artistas: string[] = this.getArtistas(arr);
-    let canciones: number[] = this.getCantidadCanciones(arr, artistas);
+    let artistas: string[] = this.getArtistas();
+    let canciones: number[] = this.getCantidadCanciones(artistas);
 
     let indicesOrdenados: number[] = canciones.map((_, indice) => indice);
     indicesOrdenados.sort((a,b) => canciones[b] - canciones[a]);
@@ -89,8 +97,13 @@ export class ProcesadorDatosService {
     return topArtistas;
   }
 
-  getTopPopularidad(arr:Cancion[]){
-    return arr.slice().sort(ProcesadorDatosService.compararPopularidad).slice(0,10);
+  getTopPopularidad(){
+    return this.dataArray.slice().sort(ProcesadorDatosService.compararPopularidad).slice(0,10);
+  }
+
+  getCancionesArtistaTop(artista:string){
+    let arrArtista:Cancion[] = this.dataArray.filter(cancion => cancion.artists.includes(artista));
+    return arrArtista.sort(ProcesadorDatosService.compararPopularidad).slice(0,5);
   }
 
 }

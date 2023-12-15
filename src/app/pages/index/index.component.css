@@ -144,16 +144,17 @@
   vertical-align: middle;
 }
 
-.dashboard .top-selling img {
-  border-radius: 5px;
-  max-width: 60px;
-}
-
-
-
 /* Activity */
 .dashboard .activity {
   font-size: 14px;
+}
+
+.dashboard .topSongsArtists .table,
+.dashboard .topSongsArtists .table tbody td,
+.dashboard .topSongsArtists .table tbody th,
+.dashboard .topSongsArtists .table thead th{
+  background-color: #191414;
+  color: #fff;
 }
 
 .dashboard .activity .activity-item .activite-label {

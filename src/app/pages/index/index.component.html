@@ -69,23 +69,6 @@
               </div>
   
             </div><!-- End Customers Card -->
-  
-            <!-- Reports -->
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
-  
-                  <!-- Line Chart -->
-                  <div id="reportsChart"></div>
-                  <!--Aqui iba una etiqueta script con los charts-->
-                  <!-- End Line Chart -->
-  
-                </div>
-  
-              </div>
-            </div><!-- End Reports -->
-  
             <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
@@ -157,62 +140,25 @@
         <div class="col-lg-4">
   
           <!-- Recent Activity -->
-          <div class="card">
+          <div class="card topSongsArtists overflow-auto">
             <div class="card-body">
-              <h5 class="card-title">Recent Activity</h5>
-  
-              <div class="activity">
-  
-                <div class="activity-item d-flex">
-                  <div class="activite-label">32 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                  <div class="activity-content">
-                    Quia quae rerum explicabo officiis beatae
-                  </div>
-                </div><!-- End activity item-->
-  
-                <div class="activity-item d-flex">
-                  <div class="activite-label">56 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                  <div class="activity-content">
-                    Voluptatem blanditiis blanditiis eveniet
-                  </div>
-                </div><!-- End activity item-->
-  
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 hrs</div>
-                  <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                  <div class="activity-content">
-                    Voluptates corrupti molestias voluptatem
-                  </div>
-                </div><!-- End activity item-->
-  
-                <div class="activity-item d-flex">
-                  <div class="activite-label">1 day</div>
-                  <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                  <div class="activity-content">
-                    Tempore autem saepe occaecati voluptatem tempore
-                  </div>
-                </div><!-- End activity item-->
-  
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 days</div>
-                  <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                  <div class="activity-content">
-                    Est sit eum reiciendis exercitationem
-                  </div>
-                </div><!-- End activity item-->
-  
-                <div class="activity-item d-flex">
-                  <div class="activite-label">4 weeks</div>
-                  <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                  <div class="activity-content">
-                    Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                  </div>
-                </div><!-- End activity item-->
-  
-              </div>
-  
+              <h5 class="card-title">Canciones Más Populares del Artista Top 1 - {{topArtistas[0].artista}}</h5>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Canción</th>
+                    <th scope="col">Popularidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of dataCancionesArtista; track item.spotify_id) {
+                    <tr>
+                      <td>{{item.name}}</td>
+                      <td>{{item.popularity}}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
             </div>
           </div><!-- End Recent Activity -->
   
