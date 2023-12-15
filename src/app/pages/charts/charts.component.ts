@@ -21,6 +21,7 @@ export class ChartsComponent {
   @ViewChild('CaracteristicasRadar', { static: false }) CaracteristicasRadar!: ElementRef;
   @ViewChild('Explicit', { static: false }) Explicit!: ElementRef;
   @ViewChild('DispersionEnergiaVSValence', { static: false }) ValenceVSEnergy!: ElementRef;
+  @ViewChild('HistogramaPopularidad', { static: false }) HistogramaPopularidad!: ElementRef;
 
   constructor(private dataProvider: SpotifySongsStatsService, private chartMaker: ProcesadorChartService){}
   ngOnInit(){
@@ -30,6 +31,7 @@ export class ChartsComponent {
       this.makeRadarChart();
       this.makeBarChart();
       this.makeScatterChart();
+      this.makePopularityChart();
     });
   }
 
@@ -64,6 +66,15 @@ export class ChartsComponent {
     const data = this.chartMaker.getScatterData();
     new Chart(ref, {
       type: "scatter",
+      data: data
+    });
+  }
+
+  makePopularityChart(){
+    const ref = this.HistogramaPopularidad.nativeElement;
+    const data = this.chartMaker.getDataSongsBarChart();
+    new Chart(ref, {
+      type: "bubble",
       data: data
     });
   }

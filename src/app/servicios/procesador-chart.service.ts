@@ -105,4 +105,30 @@ export class ProcesadorChartService {
     return data;
   }
 
+  private getBubbleData() {
+    const data:{}[] = [];
+    this.dataArray.forEach(cancion =>{
+      let x = {
+        x: parseFloat(cancion.acousticness),
+        y: parseFloat(cancion.energy),
+        r: parseFloat(cancion.instrumentalness)
+      };
+      data.push(x);
+    });
+    return data;
+  }
+
+  public getDataSongsBarChart(){
+    let labels: string[] = this.dataArray.map(cancion => cancion.name);
+    const data = {
+      labels: labels,
+      datasets:[{
+        label: "Acousticness vs Energía vs Instrumentación",
+        data: this.getBubbleData(),
+        backgroundColor: 'rgb(255, 99, 132)'
+      }]
+    } 
+    return data;
+  }
+
 }

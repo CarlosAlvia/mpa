@@ -11,6 +11,31 @@
     color: #fff;
 }
 
+.profile .profile-overview .card-title {
+    color: #fff;
+  }
+  
+
 .card-body p{
     color: #fff;
+}
+
+.custom-btn{
+    color: #fff;
+}
+
+.custom-btn:hover{
+    color: #1db954;
+    font-weight: bold;
+}
+
+.nav-item .active{
+    color: #1db954;
+    font-weight: bold;
+    border: #1db954;
+}
+
+label{
+    color: #fff;
+    font-weight: bold;
 }
