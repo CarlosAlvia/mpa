@@ -7,9 +7,11 @@ import { Cancion } from '../interfaces/cancion';
 export class ProcesadorDatosService {
 
   dataArray:Cancion[];
+  //arrArtistas: string[];
 
   constructor() { 
     this.dataArray = [];
+    //this.arrArtistas = this.getArtistas();
   }
 
   public setDataArray(arr:Cancion[]){
@@ -45,7 +47,9 @@ export class ProcesadorDatosService {
     let canciones: number[] = Array.from({length: artistas.length}, () => 0);
     this.dataArray.forEach((cancion:Cancion) =>{
       for(let i=0; i<artistas.length; i++){
-        if(cancion["artists"].includes(artistas[i])){
+        let x: string[] = cancion.artists.split(",");
+        x = x.map(song => song.trim());
+        if(x.includes(artistas[i])){
           canciones[i] += 1;
         }
       }
@@ -53,9 +57,6 @@ export class ProcesadorDatosService {
     return canciones;
   }
 
-  getArtistasRecopilados(){
-    return this.getArtistas().length;
-  }
 
   getTempoPromedio(){
     let sumatoria: number = 0;
@@ -75,6 +76,7 @@ export class ProcesadorDatosService {
   }
 
   getArtistasConMasCanciones(){
+    const finalData: any[] = [];
     let topArtistas: {top:number ,artista: string, canciones: number}[] = []; 
     let artistas: string[] = this.getArtistas();
     let canciones: number[] = this.getCantidadCanciones(artistas);
@@ -94,7 +96,9 @@ export class ProcesadorDatosService {
 
       topArtistas.push(objeto);
     }
-    return topArtistas;
+    finalData.push(topArtistas);
+    finalData.push(artistas.length);
+    return finalData;
   }
 
   getTopPopularidad(){
@@ -105,5 +109,4 @@ export class ProcesadorDatosService {
     let arrArtista:Cancion[] = this.dataArray.filter(cancion => cancion.artists.includes(artista));
     return arrArtista.sort(ProcesadorDatosService.compararPopularidad).slice(0,5);
   }
-
 }

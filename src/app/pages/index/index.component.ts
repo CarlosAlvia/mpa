@@ -19,7 +19,7 @@ import { ProcesadorDatosService } from '../../servicios/procesador-datos.service
 export class IndexComponent {
 
   artistasRecopilados: number = 0;
-  bpmPromedio: string = "0"; //RARO ESTO, FIXEDTO te da un String
+  bpmPromedio: string = "0"; 
   tiempoPromedio: string = "0";
   topArtistas: {top:number, artista: string, canciones:number}[] = [];
   dataPopularidad: Cancion[] = [];
@@ -27,17 +27,17 @@ export class IndexComponent {
 
   constructor(private dataProvider: SpotifySongsStatsService, private procesador: ProcesadorDatosService){}
   ngOnInit(){
-    this.dataProvider.getResponse().subscribe((response) => { 
+    this.dataProvider.getResponse().subscribe((response)=> { 
       let dataArray = (response as Cancion[]);
       this.procesador.setDataArray(dataArray); 
-      //dataArray = dataArray.filter(objeto => objeto.spotify_id != "3rUGC1vUpkDG9CZFHMur1t");
-      this.artistasRecopilados = this.procesador.getArtistasRecopilados();
       this.bpmPromedio = this.procesador.getTempoPromedio();
       this.tiempoPromedio = this.procesador.getTiempoPromedio();
-      this.topArtistas = this.procesador.getArtistasConMasCanciones();
+      const x = this.procesador.getArtistasConMasCanciones();
+      this.topArtistas = x[0];
+      this.artistasRecopilados = x[1];
       this.dataPopularidad = this.procesador.getTopPopularidad();
       this.dataCancionesArtista = this.procesador.getCancionesArtistaTop(this.topArtistas[0].artista);
-
+      
   })
 }
 }
