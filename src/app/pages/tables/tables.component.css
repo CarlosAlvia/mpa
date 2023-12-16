@@ -1,0 +1,52 @@
+.filter {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+  }
+  
+ .filter .icon {
+    color: #2eca6a;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    transition: 0.3s;
+    font-size: 16px;
+  }
+  
+  .filter .icon:hover,
+ .filter .icon:focus {
+    color: #1a9e44;
+  }
+  
+ .filter .dropdown-header {
+    padding: 8px 15px;
+  }
+   .filter .dropdown-header h6 {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #1a9e44;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  
+ .filter .dropdown-item {
+    padding: 8px 15px;
+  }
+
+  .card-body{
+    background-color: #191414;
+  }
+  
+  .card-body h5{
+    color: #fff;
+  }
+
+
+.table,
+.table tbody td,
+.table tbody th,
+.table thead th{
+  background-color: #191414;
+  color: #fff;
+}
