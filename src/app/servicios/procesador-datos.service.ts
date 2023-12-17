@@ -7,11 +7,9 @@ import { Cancion } from '../interfaces/cancion';
 export class ProcesadorDatosService {
 
   dataArray:Cancion[];
-  //arrArtistas: string[];
 
   constructor() { 
     this.dataArray = [];
-    //this.arrArtistas = this.getArtistas();
   }
 
   public setDataArray(arr:Cancion[]){

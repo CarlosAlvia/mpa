@@ -47,7 +47,12 @@ export class ProcesadorChartService {
         label:"Características de las Canciones",
         data: this.processDataRadar(),
         fill: true,
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        backgroundColor: 'rgba(92, 236, 140, 0.2)',
+        borderColor: 'rgb(92, 236, 140)',
+        pointBackgroundColor: 'rgb(92, 236, 140)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(92, 236, 140)'
       }]
     };
 
@@ -68,11 +73,11 @@ export class ProcesadorChartService {
         ],
         fill:true,
         backgroundColor:[
-          'rgba(255, 99, 132, 0.2)',
+          'rgba(92, 236, 140, 0.2)',
           'rgba(255, 159, 64, 0.2)'
         ],
         borderColor: [
-          'rgb(255, 99, 132)',
+          'rgba(92, 236, 140)',
           'rgb(255, 159, 64)',
         ],
         borderWidth: 1
@@ -98,7 +103,7 @@ export class ProcesadorChartService {
       datasets: [{
         label: "Valence vs Energy",
         data: this.getPairDataScatter(),
-        backgroundColor: 'rgb(255, 99, 132)'
+        backgroundColor: 'rgb(92, 236, 140)'
       }]
     };
 
