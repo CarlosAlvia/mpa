@@ -16,35 +16,49 @@
                   <h6>Filter</h6>
                 </li>
 
-                <li><a class="dropdown-item">Explícitas</a></li>
-                <li><a class="dropdown-item">No Explícitas</a></li>
+                <li><a class="dropdown-item" (click)="seleccionarTipo('Explícitas')">Explícitas</a></li>
+                <li><a class="dropdown-item" (click)="seleccionarTipo('No Explícitas')">No Explícitas</a></li>
               </ul>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Canciones Explícitas Más Populares</h5>
+              <h5 class="card-title" id="cardTitleExplicitud">Top 10 Canciones Explícitas Más Populares</h5>
 
-              <!-- Default Table -->
-              <table class="table">
+              <table class="table" id="top10explicitas">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Canción</th>
+                    <th scope="col">Artista</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
+                  @for (item of top10Explicitas; let i = $index; track item.spotify_id){
+                    <tr>
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{item.name}}</td>
+                      <td>{{item.artists}}</td>
+                    </tr>
+                  }
                 </tbody>
               </table>
-              <!-- End Default Table Example -->
+              <table [class]="['table', 'noMostrar']" id="top10noexplicitas">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Canción</th>
+                    <th scope="col">Artista</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of top10NoExplicitas; let i = $index; track item.spotify_id){
+                    <tr>
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{item.name}}</td>
+                      <td>{{item.artists}}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
             </div>
           </div>
 

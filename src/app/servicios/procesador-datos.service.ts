@@ -106,4 +106,28 @@ export class ProcesadorDatosService {
     return arrArtista.sort(ProcesadorDatosService.compararPopularidad).slice(0,5);
   }
 
+  getTop10Explicitas(){
+    let arrOrdenado:Cancion[] = this.dataArray.slice().sort(ProcesadorDatosService.compararPopularidad);
+    let arrRetorno:Cancion[] = []
+    let i = 0;
+    while(i<arrOrdenado.length && arrRetorno.length<10){
+      if(arrOrdenado[i].is_explicit=="True"){
+        arrRetorno.push(arrOrdenado[i]);
+      }
+      i++;
+    }
+    return arrRetorno;
+  }
+  getTop10NoExplicitas(){
+    let arrOrdenado:Cancion[] = this.dataArray.slice().sort(ProcesadorDatosService.compararPopularidad);
+    let arrRetorno:Cancion[] = []
+    let i = 0;
+    while(i<arrOrdenado.length && arrRetorno.length<10){
+      if(arrOrdenado[i].is_explicit=="False"){
+        arrRetorno.push(arrOrdenado[i]);
+      }
+      i++;
+    }
+    return arrRetorno;
+  }
 }

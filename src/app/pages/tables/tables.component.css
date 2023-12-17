@@ -50,3 +50,6 @@
   background-color: #191414;
   color: #fff;
 }
+.noMostrar{
+  display: none;
+}
