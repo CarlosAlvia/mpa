@@ -41,7 +41,7 @@ export class ChartsComponent {
     const options = {
       elements: {
         line: {
-          borderWidth: 3
+          borderWidth: 3,
         }
       }
     }
