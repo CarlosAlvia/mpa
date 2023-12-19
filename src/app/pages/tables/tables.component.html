@@ -15,7 +15,6 @@
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
-
                 <li><a class="dropdown-item" (click)="seleccionarTipo('Explícitas')">Explícitas</a></li>
                 <li><a class="dropdown-item" (click)="seleccionarTipo('No Explícitas')">No Explícitas</a></li>
               </ul>
@@ -73,37 +72,49 @@
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
+                <li><a class="dropdown-item" (click)="seleccionarTipo2('Bailables')">Bailables</a></li>
+                <li><a class="dropdown-item" (click)="seleccionarTipo2('Movidas')">Movidas</a></li>
               </ul>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Default Table</h5>
+              <h5 class="card-title" id="cardTitleViveza">Top 10 Canciones Más Bailables</h5>
 
-              <!-- Default Table -->
-              <table class="table">
+              <table class="table" id="top10bailables">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Canción</th>
+                    <th scope="col">Artista</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
+                  @for (item of top10Bailables; let i = $index; track item.spotify_id){
+                    <tr>
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{item.name}}</td>
+                      <td>{{item.artists}}</td>
+                    </tr>
+                  }
                 </tbody>
               </table>
-              <!-- End Default Table Example -->
+              <table [class]="['table', 'noMostrar']" id="top10movidas">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Canción</th>
+                    <th scope="col">Artista</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of top10Movidas; let i = $index; track item.spotify_id){
+                    <tr>
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{item.name}}</td>
+                      <td>{{item.artists}}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

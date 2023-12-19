@@ -28,6 +28,29 @@ export class ProcesadorDatosService {
     }
   };
 
+  static compararBailabilidad = (a:Cancion, b:Cancion) => {
+    const popA = parseFloat(a.danceability);
+    const popB = parseFloat(b.danceability);
+    if(popA < popB){
+      return 1;
+    } else if(popA > popB){
+      return -1;
+    }else{
+      return 0;
+    }
+  };
+  static compararMovidas = (a:Cancion, b:Cancion) => {
+    const popA = parseFloat(a.liveness);
+    const popB = parseFloat(b.liveness);
+    if(popA < popB){
+      return 1;
+    } else if(popA > popB){
+      return -1;
+    }else{
+      return 0;
+    }
+  };
+
   private getArtistas(){
     let artistas: string[] = [];
     this.dataArray.forEach((elemento: Cancion) => {
@@ -131,5 +154,11 @@ export class ProcesadorDatosService {
       i++;
     }
     return arrRetorno;
+  }
+  getTop10Bailables(){
+    return this.dataArray.slice().sort(ProcesadorDatosService.compararBailabilidad).slice(0,10);
+  }
+  getTop10Movidas(){
+    return this.dataArray.slice().sort(ProcesadorDatosService.compararMovidas).slice(0,10);
   }
 }
