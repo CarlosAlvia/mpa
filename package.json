@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:prod": "ng build --configuration production --base-href /mpa"
+    "build:prod": "ng build --configuration production --base-href /mpa/browser"
   },
   "private": true,
   "dependencies": {
