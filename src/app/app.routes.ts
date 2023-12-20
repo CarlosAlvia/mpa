@@ -9,5 +9,5 @@ export const routes: Routes = [
     {path:  'about', component: AboutComponent },
     {path:  'charts', component: ChartsComponent},
     {path: "tables", component: TablesComponent},
-  { path: '**', redirectTo: "IndexComponent" }
+  { path: '**', redirectTo: "" }
 ];
