@@ -13,7 +13,7 @@ export class ProcesadorChartService {
   }
 
   setDataArray(arr:Cancion[]){
-    this.dataArray = arr;
+    this.dataArray = arr
   }
 
   private getPromedioAtributo(atributo:keyof Cancion){
@@ -116,7 +116,7 @@ export class ProcesadorChartService {
       let x = {
         x: parseFloat(cancion.acousticness),
         y: parseFloat(cancion.energy),
-        r: parseFloat(cancion.instrumentalness)
+        r: parseFloat(cancion.valence)*10
       };
       data.push(x);
     });
@@ -130,7 +130,7 @@ export class ProcesadorChartService {
       datasets:[{
         label: "Acousticness vs Energía vs Instrumentación",
         data: this.getBubbleData(),
-        backgroundColor: 'rgb(255, 99, 132)'
+        color: 'rgb(255, 99, 132)'
       }]
     } 
     return data;
